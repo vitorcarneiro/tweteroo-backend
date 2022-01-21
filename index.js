@@ -1,4 +1,4 @@
-import express, {json} from 'express';
+import express, { json } from 'express';
 import cors from 'cors';
 
 const user = {
@@ -25,7 +25,7 @@ let tweets = [
 ];
 
 const server = express();
-server.use(cors(), express.json());
+server.use(cors(), json());
 
 server.post('/sign-up', (req, res) => {
     user.username = req.body.username;
@@ -34,13 +34,18 @@ server.post('/sign-up', (req, res) => {
     res.send("OK");
 });
 
-server.post('/tweets', (req, res) => {
-
-    res.send("OK");
-});
-
 server.get('/tweets', (req, res) => {
     res.send(tweets.slice(Math.max(tweets.length - 10, 0)));
+});
+
+server.post('/tweets', (req, res) => {
+    tweets.push({
+        username: user.username,
+        avatar: user.avatar,
+        tweet: req.body.tweet
+    });
+
+    res.send("OK");
 });
 
 server.listen(5000, () => {

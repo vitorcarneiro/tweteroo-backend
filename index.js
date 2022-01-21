@@ -21,7 +21,7 @@ let tweets = [
 	    username: "fausto",
         avatar: 'https://istoe.com.br/wp-content/uploads/sites/14/2022/01/faustao-credito-da-foto-reproducao-band.jpg',
         tweet: "o loco meu"
-    },
+    }
 ];
 
 const server = express();
@@ -40,7 +40,7 @@ server.post('/tweets', (req, res) => {
 });
 
 server.get('/tweets', (req, res) => {
-    res.send(tweets);
+    res.send(tweets.slice(Math.max(tweets.length - 10, 0)));
 });
 
 server.listen(5000, () => {

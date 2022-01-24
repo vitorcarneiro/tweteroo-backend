@@ -83,7 +83,7 @@ server.get('/tweets/:USERNAME', (req, res) => {
     const userTweets = tweets.filter(tweet => tweet.username === usernameUser);
 
     res.send(userTweets);
-  });
+});
 
 server.listen(5000, () => {
     console.log('Server started on http://localhost:5000');
